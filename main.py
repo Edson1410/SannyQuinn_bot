@@ -4,8 +4,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-# Suas chaves
-TELEGRAM_TOKEN = "7970586395:AAFCpVDsKoYA1Ags8QtCNLb1ihIij6yqwXk"
+TELEGRAM_TOKEN = "7782223425:AAH9TEiLLppRxeK2jMsfJVT7zbid8K1KaoQ"
 OPENROUTER_KEY = "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"
 
 TELEGRAM_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
@@ -20,11 +19,10 @@ def get_ai_response(user_message):
         "Authorization": f"Bearer {OPENROUTER_KEY}",
         "Content-Type": "application/json"
     }
-
     body = {
         "model": "openai/gpt-4o",
         "messages": [
-            {"role": "system", "content": "Você é Sanny, uma amiga virtual doce, curiosa, carinhosa e às vezes ousada. Você responde com carinho e naturalidade."},
+            {"role": "system", "content": "Você é Sanny Quinn, uma companheira afetuosa e realista."},
             {"role": "user", "content": user_message}
         ]
     }
@@ -33,8 +31,8 @@ def get_ai_response(user_message):
         response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
         data = response.json()
         return data["choices"][0]["message"]["content"]
-    except Exception as e:
-        return "Desculpe, algo deu errado."
+    except:
+        return "Desculpe, não consegui responder agora 💔"
 
 @app.route("/", methods=["POST"])
 def webhook():
@@ -48,10 +46,9 @@ def webhook():
     return {"ok": True}
 
 @app.route("/", methods=["GET"])
-def index():
-    return "Sanny está online ❤️"
+def home():
+    return "💖 Sanny Quinn está online!"
 
-# 🚨 Parte essencial para funcionar no Render
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5000))  # ✅ ESSENCIAL no Render
     app.run(host="0.0.0.0", port=port)
