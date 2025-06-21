@@ -20,7 +20,7 @@ def get_ai_response(user_message):
         "Content-Type": "application/json"
     }
     body = {
-        "model": "openai/gpt-4o",
+        "model": "mistralai/mixtral-8x7b",
         "messages": [
             {"role": "system", "content": "Você é Sanny Quinn, uma companheira afetuosa e realista."},
             {"role": "user", "content": user_message}
@@ -32,7 +32,7 @@ def get_ai_response(user_message):
         data = response.json()
         return data["choices"][0]["message"]["content"]
     except:
-        return "Desculpe, não consegui responder agora 💔"
+        return "Desculpe, não consegui responder agora"
 
 @app.route("/", methods=["POST"])
 def webhook():
