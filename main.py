@@ -20,7 +20,7 @@ def get_ai_response(user_message):
         "Content-Type": "application/json"
     }
     body = {
-        "model": "mistralai/mixtral-8x7b",
+        "model": "openai/gpt-4o",
         "messages": [
             {"role": "system", "content": "Você é Sanny Quinn, uma companheira afetuosa e realista."},
             {"role": "user", "content": user_message}
