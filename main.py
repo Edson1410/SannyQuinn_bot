@@ -5,7 +5,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 TELEGRAM_TOKEN = "7782223425:AAH9TEiLLppRxeK2jMsfJVT7zbid8K1KaoQ"
-OPENROUTER_KEY = "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"
+OPENROUTER_KEY = "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"
 
 TELEGRAM_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
 
